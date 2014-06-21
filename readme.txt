@@ -16,6 +16,12 @@ The Comment Form plugin enables you to customize the WordPress comment form righ
 
 You can find the settings page under `Comments > Comment Form` in the dashboard.
 
+Features:
+* hide the url field (where commenters can leave their urls)
+
+Important notes:
+* the plugin works only, if your theme uses the standard WordPress comment form function
+
 == Installation ==
 
 
