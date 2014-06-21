@@ -18,12 +18,15 @@ You can find the settings page under `Comments > Comment Form` in the dashboard.
 
 Features:
 * hide the url field (where commenters can leave their urls)
-
-Important notes:
-* the plugin works only, if your theme uses the standard WordPress comment form function
+* the message that emails are not published and which fields are required
+* insert custom text before the form
 
 == Installation ==
 
+== Important Notes ==
+
+* the plugin works only, if your theme uses the standard WordPress comment form function
+* options that where submitted with the `comment_form` function in your template overwrite most of the plugin functions
 
 == Changelog ==
 
