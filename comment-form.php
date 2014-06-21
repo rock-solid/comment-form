@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Plugin Name: Comment Form
  * Description: Easily customize the standard comment form.
@@ -34,31 +35,21 @@ define('CFVERSION', '1.0.0');
 define('CFDIR', basename(dirname(__FILE__)));
 define('CFPATH', plugin_dir_path(__FILE__));
 
-if (!class_exists('Cf_Class')) {
+/**
+ * load classes
+ */
+if (!class_exists('Comment_Form_Main')) {
+    require_once( plugin_dir_path(__FILE__) . 'inc/comment_form_main.php' );
+}
 
-    class Cf_Class {
-
-        /**
-         * initialize the plugin
-         * @since 1.0
-         */
-        public function __construct() {
-            // Load plugin text domain
-            add_action('plugins_loaded', array($this, 'load_plugin_textdomain'));
-
-        }
-
-        /**
-         * Load the plugin text domain for translation.
-         *
-         * @since    1.2.0
-         */
-        public function load_plugin_textdomain() {
-
-            load_plugin_textdomain("commentform", false, dirname( plugin_basename( __FILE__ ) ) . '/languages/');
-        }
-
+if (is_admin() && (!defined('DOING_AJAX') || !DOING_AJAX )) {
+    if (!class_exists('Comment_Form_Admin')) {
+        require_once( plugin_dir_path(__FILE__) . 'admin/comment_form_admin.php' );
     }
-
-    $ima = new Cf_Class();
+    $cf_admin = new Comment_Form_Admin();
+} elseif (!is_admin() && (!defined('DOING_AJAX') || !DOING_AJAX )) {
+    if (!class_exists('Comment_Form_Frontend')) {
+        require_once( plugin_dir_path(__FILE__) . 'frontend/comment_form_frontend.php' );
+    }
+    $cf_frontend = new Comment_Form_Frontend();
 }
