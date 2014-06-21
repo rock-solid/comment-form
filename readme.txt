@@ -14,6 +14,7 @@ This plugin lets you customize plenty of things on the default comment forms.
 
 The Comment Form plugin enables you to customize the WordPress comment form right from your dashboard.
 
+You can find the settings page under `Comments > Comment Form` in the dashboard.
 
 == Installation ==
 
