@@ -18,8 +18,10 @@ You can find the settings page under `Comments > Comment Form` in the dashboard.
 
 Features:
 * hide the url field (where commenters can leave their urls)
-* the message that emails are not published and which fields are required
+* hide the message that emails are not published and which fields are required
+* hide the text about which html tags are allowed
 * insert custom text before the form
+* insert custom text after the form
 
 == Installation ==
 

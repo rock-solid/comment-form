@@ -53,6 +53,8 @@ class Comment_Form_Admin extends Comment_Form_Main {
         add_settings_field('commentform_settings_hide_url', __('remove url field', 'commentform'), array($this, 'render_hide_url_field_callback'), 'comment-form-customizer', 'comment_form_url_section');
         add_settings_field('commentform_settings_notes_before', __('text before the form', 'commentform'), array($this, 'render_comment_notes_before_callback'), 'comment-form-customizer', 'comment_form_notes_section');
         add_settings_field('commentform_settings_hide_notes_before', __('hide text before the form', 'commentform'), array($this, 'render_hide_notes_before_callback'), 'comment-form-customizer', 'comment_form_notes_section');
+        add_settings_field('commentform_settings_hide_notes_after', __('hide text after the form', 'commentform'), array($this, 'render_hide_notes_after_callback'), 'comment-form-customizer', 'comment_form_notes_section');
+        add_settings_field('commentform_settings_notes_after', __('text after the form', 'commentform'), array($this, 'render_comment_notes_after_callback'), 'comment-form-customizer', 'comment_form_notes_section');
 
         // register setting for $_POST handling
         register_setting('comment_form_url_section', 'commentform_settings');
@@ -102,13 +104,35 @@ class Comment_Form_Admin extends Comment_Form_Main {
     }
 
     /**
+     * remove default text after the comment form
+     *
+     * @since 1.0.0
+     */
+    public function render_hide_notes_after_callback() {
+        echo '<input name="commentform_settings[hide_notes_after]" id="commentform_settings_hide_notes_after" type="checkbox" value="1" class="code" ' . checked(1, $this->options('hide_notes_after'), false) . ' />';
+        echo '<p class="description">'.__('Removes the default text after the comment form. This is currently:', 'commentform').'</p>';
+
+        echo '<blockquote><i>' . sprintf( __( 'You may use these <abbr title="HyperText Markup Language">HTML</abbr> tags and attributes: %s' ), ' <code>' . allowed_tags() . '</code>' ) . '</i></blockquote>';
+    }
+
+    /**
      * add addtional text before the form
      *
      * @since 1.0.0
      */
     public function render_comment_notes_before_callback() {
         echo '<textarea name="commentform_settings[text_before]" id="commentform_settings_text_before">' . $this->options('text_before') . '</textarea>';
-        echo '<p class="description">'.__('This text is inserted between the headline and the first output, if commenting is allowed to the user.', 'commentform').'</p>';
+        echo '<p class="description">'.__('This text is inserted between the headline and the first output if commenting is allowed to the user.', 'commentform').'</p>';
+    }
+
+    /**
+     * add addtional text after the form
+     *
+     * @since 1.0.0
+     */
+    public function render_comment_notes_after_callback() {
+        echo '<textarea name="commentform_settings[text_after]" id="commentform_settings_text_after">' . $this->options('text_after') . '</textarea>';
+        echo '<p class="description">'.__('This text is inserted after the form when commenting if commiting is allowed to the user.', 'commentform').'</p>';
     }
 
 }

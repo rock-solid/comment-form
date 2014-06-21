@@ -55,8 +55,10 @@ class Comment_Form_Main {
         $required_text = sprintf( ' ' . __('Required fields are marked %s'), '<span class="required">*</span>' );
 
         $defaults = array(
-            'hide_url' => 0,
+            'hide_notes_after' => 0,
             'hide_notes_before' => 0,
+            'hide_url' => 0,
+            'text_after' => '',
             'text_before' => '',
         );
 
