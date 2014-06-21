@@ -49,10 +49,10 @@ class Comment_Form_Admin extends Comment_Form_Main {
         add_settings_section('comment_form_url_section', __('Commenter URL', 'commentform'), array($this, 'render_url_section_callback'), 'comment-form-customizer');
 
         // add settings fields
-        add_settings_field('cf_setting_hide_url', __('remove url field', 'commentform'), array($this, 'render_hide_url_field_callback'), 'comment-form-customizer', 'comment_form_url_section');
+        add_settings_field('commentform_settings_hide_url', __('remove url field', 'commentform'), array($this, 'render_hide_url_field_callback'), 'comment-form-customizer', 'comment_form_url_section');
 
         // register setting for $_POST handling
-        register_setting('comment_form_url_section', 'cf_setting_hide_url');
+        register_setting('comment_form_url_section', 'commentform_settings');
     }
 
     /**
@@ -70,7 +70,7 @@ class Comment_Form_Admin extends Comment_Form_Main {
      * @since 1.0.0
      */
     public function render_hide_url_field_callback() {
-        echo '<input name="cf_setting_hide_url" id="cf_setting_hide_url" type="checkbox" value="1" class="code" ' . checked(1, get_option('cf_setting_hide_url'), false) . ' />';
+        echo '<input name="commentform_settings[hide_url]" id="commentform_settings_hide_url" type="checkbox" value="1" class="code" ' . checked(1, $this->options('hide_url'), false) . ' />';
         echo '<p class="description">'.__('Removes the "website" field from the frontend.').'</p>';
     }
 
