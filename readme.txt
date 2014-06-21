@@ -23,7 +23,17 @@ Features:
 * insert custom text before the form
 * insert custom text after the form
 
+I am open to your suggestions for more features here or the [github repository](https://github.com/webgilde/comment-form)
+
 == Installation ==
+
+1. Upload the plugin folder to the `/wp-content/plugins/` directory
+1. Activate the plugin through the 'Plugins' menu in WordPress
+1. Visit the settings page under `Comments > Comment Form` to customize the form
+
+== Screenshots ==
+
+1. Comment form before and after applying some of the plugin options
 
 == Important Notes ==
 
