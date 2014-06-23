@@ -1,10 +1,10 @@
-=== Individual Multisite Author ===
+=== Comment Form Customizer ===
 Contributors: webzunft
 Donate link: http://webgilde.com/
-Tags: comment form, comments, form
+Tags: comment form, comments, form, comment form
 Requires at least: 3.0
 Tested up to: 3.9.1
-Stable tag: 1.0.0
+Stable tag: 1.0.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -17,6 +17,7 @@ The Comment Form plugin enables you to customize the WordPress comment form righ
 You can find the settings page under `Comments > Comment Form` in the dashboard.
 
 Features:
+
 * hide the url field (where commenters can leave their urls)
 * hide the message that emails are not published and which fields are required
 * hide the text about which html tags are allowed
@@ -42,5 +43,10 @@ I am open to your suggestions for more features here or the [github repository](
 
 == Changelog ==
 
+= 1.0.1 =
+
+* so many plugins written and still not getting the readme.txt right
+
 = 1.0 =
+
 * first version of the plugin
