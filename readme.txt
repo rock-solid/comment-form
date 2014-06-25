@@ -18,12 +18,13 @@ You can find the settings page under `Comments > Comment Form` in the dashboard.
 
 Features:
 
-* hide the url field (where commenters can leave their urls) for standard, and non standard comment forms
-* hide the message that emails are not published and which fields are required
-* hide the text about which html tags are allowed
+* remove the url field (where commenters can leave their urls) for standard, and non standard comment forms
+* remove the message that emails are not published and which fields are required
+* remove the text about which html tags are allowed
 * insert custom text before the form
 * insert custom text after the form
 * `[comment-form]` shortcode to insert comment form into posts and pages
+* use a two columns layout for the comment form
 
 I am open to your suggestions for more features here or the [github repository](https://github.com/webgilde/comment-form)
 
@@ -43,6 +44,10 @@ I am open to your suggestions for more features here or the [github repository](
 * options that where submitted with the `comment_form` function in your template overwrite most of the plugin functions
 
 == Changelog ==
+
+= 1.2.0 =
+
+* added two columns layout
 
 = 1.1.0 =
 
