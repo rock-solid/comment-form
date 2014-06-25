@@ -86,6 +86,8 @@ class Comment_Form_Admin extends Comment_Form_Main {
     public function render_hide_url_field_callback() {
         echo '<input name="commentform_settings[hide_url]" id="commentform_settings_hide_url" type="checkbox" value="1" class="code" ' . checked(1, $this->options('hide_url'), false) . ' />';
         echo '<p class="description">'.__('Removes the "website" field from the frontend.', 'commentform').'</p>';
+        echo '<input name="commentform_settings[hide_url_css]" id="commentform_settings_hide_url_css" type="checkbox" value="1" class="code" ' . checked(1, $this->options('hide_url_css'), false) . ' />';
+        echo '<p class="description">'.__('Removes the "website" field with css. Use this only if the method above doesn’t work. This uses "display:none" on the most common css selectors for the url field. The value might still get submitted by bots and tech-savvy users.', 'commentform').'</p>';
     }
 
     /**

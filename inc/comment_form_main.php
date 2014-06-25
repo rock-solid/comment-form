@@ -58,6 +58,7 @@ class Comment_Form_Main {
             'hide_notes_after' => 0,
             'hide_notes_before' => 0,
             'hide_url' => 0,
+            'hide_url_css' => false,
             'text_after' => '',
             'text_before' => '',
         );

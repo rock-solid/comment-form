@@ -16,6 +16,8 @@ class Comment_Form_Frontend extends Comment_Form_Main{
         add_action('comment_form_top', array($this, 'comment_form_top_action'));
         // comment form do after closing the form
         add_action('comment_form_after', array($this, 'comment_form_after_action'));
+        // add scripts to footer
+        add_action('wp_footer', array($this, 'footer_output'));
 
     }
 
@@ -89,5 +91,23 @@ class Comment_Form_Frontend extends Comment_Form_Main{
         if(isset($options['text_after']) && $options['text_after'] != ''){
             echo '<p class="comment_text_after">'. $options['text_after'] .'</p>';
         }
+    }
+
+    /**
+     * output for the footer in the frontend
+     *
+     * @since 1.0.0
+     */
+    public function footer_output(){
+
+        $options = $this->options();
+
+        // css code to hide the url field
+        // #url as in /wp-includes/theme-compat/comments.php
+        // .comment-form-url as in the default comment form in /wp-includes/comment-template.php
+        if($options['hide_url_css']){
+            echo "<style>.comment-form-url, #url {display:none;}</style>";
+        }
+
     }
 }

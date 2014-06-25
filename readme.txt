@@ -1,4 +1,4 @@
-=== Comment Form Customizer ===
+=== Advanced Comment Form ===
 Contributors: webzunft
 Donate link: http://webgilde.com/
 Tags: comment form, comments, form, comment form
@@ -8,17 +8,17 @@ Stable tag: 1.0.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-This plugin lets you customize plenty of things on the default comment forms.
+Advanced Comment Form lets you customize plenty of things on the default comment forms in WordPress.
 
 == Description ==
 
-The Comment Form plugin enables you to customize the WordPress comment form right from your dashboard.
+Advanced Comment Form enables you to customize the WordPress comment form right from your dashboard.
 
 You can find the settings page under `Comments > Comment Form` in the dashboard.
 
 Features:
 
-* hide the url field (where commenters can leave their urls)
+* hide the url field (where commenters can leave their urls) for standard, and non standard comment forms
 * hide the message that emails are not published and which fields are required
 * hide the text about which html tags are allowed
 * insert custom text before the form
@@ -42,6 +42,12 @@ I am open to your suggestions for more features here or the [github repository](
 * options that where submitted with the `comment_form` function in your template overwrite most of the plugin functions
 
 == Changelog ==
+
+= 1.1.0 =
+
+* renamed the plugin to Advanced Comment Form
+* hopefully fixed some issues with the readme file
+* remove website field using css as an alternative method
 
 = 1.0.1 =
 

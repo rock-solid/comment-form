@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Plugin Name: Comment Form
+ * Plugin Name: Advanced Comment Form
  * Description: Easily customize the standard comment form.
  * Version: 1.0.1
  * Plugin URI: http://webgilde.com/
