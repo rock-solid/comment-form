@@ -61,6 +61,7 @@ class Comment_Form_Main {
             'hide_url_css' => false,
             'text_after' => '',
             'text_before' => '',
+            'two_columns' => false
         );
 
         return $defaults;
