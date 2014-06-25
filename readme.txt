@@ -23,6 +23,7 @@ Features:
 * hide the text about which html tags are allowed
 * insert custom text before the form
 * insert custom text after the form
+* `[comment-form]` shortcode to insert comment form into posts and pages
 
 I am open to your suggestions for more features here or the [github repository](https://github.com/webgilde/comment-form)
 
@@ -48,6 +49,7 @@ I am open to your suggestions for more features here or the [github repository](
 * renamed the plugin to Advanced Comment Form
 * hopefully fixed some issues with the readme file
 * remove website field using css as an alternative method
+* added `[comment-form]` shortcode to insert comment form into posts and pages
 
 = 1.0.1 =
 
