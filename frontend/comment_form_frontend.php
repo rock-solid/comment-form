@@ -32,7 +32,7 @@ class Comment_Form_Frontend extends Comment_Form_Main{
         $options = $this->options();
 
         // hide the url field
-        if($options['hide_url']) {
+        if($options['hide_url'] && isset($fields['url'])) {
             unset($fields['url']);
         }
 
