@@ -57,6 +57,8 @@ class Comment_Form_Main {
         $defaults = array(
             'hide_notes_after' => 0,
             'hide_notes_before' => 0,
+            'remove_email' => false,
+            'remove_email_css' => false,
             'hide_url' => 0,
             'hide_url_css' => false,
             'text_after' => '',

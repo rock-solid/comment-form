@@ -4,7 +4,7 @@ Donate link: http://webgilde.com/
 Tags: comment form, comments, form, comment form
 Requires at least: 3.0
 Tested up to: 3.9.1
-Stable tag: 1.1.0
+Stable tag: 1.2.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -18,7 +18,8 @@ You can find the settings page under `Comments > Comment Form` in the dashboard.
 
 Features:
 
-* remove the url field (where commenters can leave their urls) for standard, and non standard comment forms
+* remove the email field for standard, and non standard comment forms
+* remove the website field for standard, and non standard comment forms
 * remove the message that emails are not published and which fields are required
 * remove the text about which html tags are allowed
 * insert custom text before the form

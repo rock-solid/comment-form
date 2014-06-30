@@ -46,14 +46,15 @@ class Comment_Form_Admin extends Comment_Form_Main {
      */
     public function register_settings() {
         // add sections to comment form settings page
-        add_settings_section('comment_form_url_section', __('Fields', 'commentform'), array($this, 'render_url_section_callback'), 'comment-form-customizer');
-        add_settings_section('comment_form_notes_section', __('Texts', 'commentform'), array($this, 'render_notes_section_callback'), 'comment-form-customizer');
+        add_settings_section('comment_form_fields_section', __('Fields', 'commentform'), array($this, 'render_fields_section_callback'), 'comment-form-customizer');
+        add_settings_section('comment_form_texts_section', __('Texts', 'commentform'), array($this, 'render_texts_section_callback'), 'comment-form-customizer');
         add_settings_section('comment_form_layout_section', __('Layouts', 'commentform'), array($this, 'render_layout_section_callback'), 'comment-form-customizer');
 
         // add settings fields
-        add_settings_field('commentform_settings_hide_url', __('remove url field', 'commentform'), array($this, 'render_hide_url_field_callback'), 'comment-form-customizer', 'comment_form_url_section');
-        add_settings_field('commentform_settings_notes_before', __('texts before the form', 'commentform'), array($this, 'render_comment_notes_before_callback'), 'comment-form-customizer', 'comment_form_notes_section');
-        add_settings_field('commentform_settings_notes_after', __('texts after the form', 'commentform'), array($this, 'render_comment_notes_after_callback'), 'comment-form-customizer', 'comment_form_notes_section');
+        add_settings_field('commentform_settings_hide_url', __('remove url field', 'commentform'), array($this, 'render_hide_url_field_callback'), 'comment-form-customizer', 'comment_form_fields_section');
+        add_settings_field('commentform_settings_remove_email', __('remove email field', 'commentform'), array($this, 'render_remove_email_field_callback'), 'comment-form-customizer', 'comment_form_fields_section');
+        add_settings_field('commentform_settings_notes_before', __('texts before the form', 'commentform'), array($this, 'render_comment_notes_before_callback'), 'comment-form-customizer', 'comment_form_texts_section');
+        add_settings_field('commentform_settings_notes_after', __('texts after the form', 'commentform'), array($this, 'render_comment_notes_after_callback'), 'comment-form-customizer', 'comment_form_texts_section');
         add_settings_field('commentform_settings_two_columns', __('two column layout', 'commentform'), array($this, 'render_two_columns_callback'), 'comment-form-customizer', 'comment_form_layout_section');
 
         // register setting for $_POST handling
@@ -65,7 +66,7 @@ class Comment_Form_Admin extends Comment_Form_Main {
      *
      * @since 1.0.0
      */
-    public function render_url_section_callback() {
+    public function render_fields_section_callback() {
         echo '<p>'.__('Customizing the field where a commenter can write his url into.').'</p>';
     }
 
@@ -74,7 +75,7 @@ class Comment_Form_Admin extends Comment_Form_Main {
      *
      * @since 1.0.0
      */
-    public function render_notes_section_callback() {
+    public function render_texts_section_callback() {
         echo '<p>'.__('Customizing additional notes and texts.').'</p>';
     }
 
@@ -99,6 +100,24 @@ class Comment_Form_Admin extends Comment_Form_Main {
         echo '<input name="commentform_settings[hide_url_css]" id="commentform_settings_hide_url_css" type="checkbox" value="1" class="code" ' . checked(1, $this->options('hide_url_css'), false) . ' />';
         echo '<label for="commentform_settings_hide_url_css">'. __('remove website field with css', 'commentform') .'</label>';
         echo '<p class="description">'.__('Removes the "website" field with css. Use this only if the method above doesn’t work. This uses "display:none" on the most common css selectors for the url field. The value might still get submitted by bots and tech-savvy users.', 'commentform').'</p>';
+    }
+
+    /**
+     * email field settings
+     *
+     * @since 1.2.0
+     */
+    public function render_remove_email_field_callback() {
+        $req = get_option( 'require_name_email' );
+        if($req){
+            echo '<p class="warning">'.sprintf(__('Your current setting requires the email field to be filled. Change this option <a href="%s">here</a> before removing the field.', 'commentform'), admin_url() . 'options-discussion.php').'</p>';
+        }
+        echo '<input name="commentform_settings[remove_email]" id="commentform_settings_remove_email" type="checkbox" value="1" class="code" ' . checked(1, $this->options('remove_email'), false) . ' />';
+        echo '<label for="commentform_settings_remove_email">'. __('remove email field', 'commentform') .'</label>';
+        echo '<p class="description">'.__('Removes the "email" field from the frontend programmatically.', 'commentform').'</p>';
+        echo '<input name="commentform_settings[remove_email_css]" id="commentform_settings_remove_email_css" type="checkbox" value="1" class="code" ' . checked(1, $this->options('remove_email_css'), false) . ' />';
+        echo '<label for="commentform_settings_remove_email_css">'. __('remove email field with css', 'commentform') .'</label>';
+        echo '<p class="description">'.__('Removes the "email" field with css. Use this only if the method above doesn’t work. This uses "display:none" on the most common css selectors for the email field. The value might still get submitted by bots and tech-savvy users.', 'commentform').'</p>';
     }
 
     /**

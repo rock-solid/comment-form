@@ -39,7 +39,12 @@ class Comment_Form_Frontend extends Comment_Form_Main {
 
         $options = $this->options();
 
-        // hide the url field
+        // remove the email field
+        if ($options['remove_email'] && isset($fields['email'])) {
+            unset($fields['email']);
+        }
+
+        // remove the url field
         if ($options['hide_url'] && isset($fields['url'])) {
             unset($fields['url']);
         }
@@ -153,6 +158,12 @@ class Comment_Form_Frontend extends Comment_Form_Main {
         // .comment-form-url as in the default comment form in /wp-includes/comment-template.php
         if ($options['hide_url_css']) {
             echo "<style>.comment-form-url, #url {display:none;}</style>";
+        }
+        // css code to hide the email field
+        // #email as in /wp-includes/theme-compat/comments.php
+        // .comment-form-email as in the default comment form in /wp-includes/comment-template.php
+        if ($options['remove_email_css']) {
+            echo "<style>.comment-form-email, #email {display:none;}</style>";
         }
         // apply styles for two columns comment form layout
         if ($options['two_columns'] && !is_user_logged_in()) {
