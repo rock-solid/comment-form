@@ -16,16 +16,25 @@ Advanced Comment Form enables you to customize the WordPress comment form right 
 
 You can find the settings page under `Comments > Comment Form` in the dashboard.
 
-Features:
+**Remove Fields**
 
 * remove the email field for standard, and non standard comment forms
 * remove the website field for standard, and non standard comment forms
+
+**Change Texts**
+
 * remove the message that emails are not published and which fields are required
 * remove the text about which html tags are allowed
 * insert custom text before the form
 * insert custom text after the form
-* `[comment-form]` shortcode to insert comment form into posts and pages
+
+**Layouts**
+
 * use a two columns layout for the comment form
+
+**Shortcode**
+
+* `[comment-form]` shortcode to insert comment form into posts and pages
 
 I am open to your suggestions for more features here or in the [github repository](https://github.com/webgilde/comment-form)
 
