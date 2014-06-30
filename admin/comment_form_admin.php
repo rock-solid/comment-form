@@ -46,16 +46,14 @@ class Comment_Form_Admin extends Comment_Form_Main {
      */
     public function register_settings() {
         // add sections to comment form settings page
-        add_settings_section('comment_form_url_section', __('Commenter URL', 'commentform'), array($this, 'render_url_section_callback'), 'comment-form-customizer');
-        add_settings_section('comment_form_notes_section', __('Comment notes', 'commentform'), array($this, 'render_notes_section_callback'), 'comment-form-customizer');
+        add_settings_section('comment_form_url_section', __('Fields', 'commentform'), array($this, 'render_url_section_callback'), 'comment-form-customizer');
+        add_settings_section('comment_form_notes_section', __('Texts', 'commentform'), array($this, 'render_notes_section_callback'), 'comment-form-customizer');
         add_settings_section('comment_form_layout_section', __('Layouts', 'commentform'), array($this, 'render_layout_section_callback'), 'comment-form-customizer');
 
         // add settings fields
         add_settings_field('commentform_settings_hide_url', __('remove url field', 'commentform'), array($this, 'render_hide_url_field_callback'), 'comment-form-customizer', 'comment_form_url_section');
-        add_settings_field('commentform_settings_notes_before', __('text before the form', 'commentform'), array($this, 'render_comment_notes_before_callback'), 'comment-form-customizer', 'comment_form_notes_section');
-        add_settings_field('commentform_settings_hide_notes_before', __('hide text before the form', 'commentform'), array($this, 'render_hide_notes_before_callback'), 'comment-form-customizer', 'comment_form_notes_section');
-        add_settings_field('commentform_settings_hide_notes_after', __('hide text after the form', 'commentform'), array($this, 'render_hide_notes_after_callback'), 'comment-form-customizer', 'comment_form_notes_section');
-        add_settings_field('commentform_settings_notes_after', __('text after the form', 'commentform'), array($this, 'render_comment_notes_after_callback'), 'comment-form-customizer', 'comment_form_notes_section');
+        add_settings_field('commentform_settings_notes_before', __('texts before the form', 'commentform'), array($this, 'render_comment_notes_before_callback'), 'comment-form-customizer', 'comment_form_notes_section');
+        add_settings_field('commentform_settings_notes_after', __('texts after the form', 'commentform'), array($this, 'render_comment_notes_after_callback'), 'comment-form-customizer', 'comment_form_notes_section');
         add_settings_field('commentform_settings_two_columns', __('two column layout', 'commentform'), array($this, 'render_two_columns_callback'), 'comment-form-customizer', 'comment_form_layout_section');
 
         // register setting for $_POST handling
@@ -96,36 +94,11 @@ class Comment_Form_Admin extends Comment_Form_Main {
      */
     public function render_hide_url_field_callback() {
         echo '<input name="commentform_settings[hide_url]" id="commentform_settings_hide_url" type="checkbox" value="1" class="code" ' . checked(1, $this->options('hide_url'), false) . ' />';
-        echo '<p class="description">'.__('Removes the "website" field from the frontend.', 'commentform').'</p>';
+        echo '<label for="commentform_settings_hide_url">'. __('remove website field', 'commentform') .'</label>';
+        echo '<p class="description">'.__('Removes the "website" field from the frontend programmatically.', 'commentform').'</p>';
         echo '<input name="commentform_settings[hide_url_css]" id="commentform_settings_hide_url_css" type="checkbox" value="1" class="code" ' . checked(1, $this->options('hide_url_css'), false) . ' />';
+        echo '<label for="commentform_settings_hide_url_css">'. __('remove website field with css', 'commentform') .'</label>';
         echo '<p class="description">'.__('Removes the "website" field with css. Use this only if the method above doesn’t work. This uses "display:none" on the most common css selectors for the url field. The value might still get submitted by bots and tech-savvy users.', 'commentform').'</p>';
-    }
-
-    /**
-     * remove default text before the comment form
-     *
-     * @since 1.0.0
-     */
-    public function render_hide_notes_before_callback() {
-        echo '<input name="commentform_settings[hide_notes_before]" id="commentform_settings_hide_notes_before" type="checkbox" value="1" class="code" ' . checked(1, $this->options('hide_notes_before'), false) . ' />';
-        echo '<p class="description">'.__('Removes the default text before the comment form. This is currently:', 'commentform').'</p>';
-
-        $req = get_option( 'require_name_email' );
-        $required_text = sprintf( ' ' . __('Required fields are marked %s'), '<span class="required">*</span>' );
-
-        echo '<blockquote><i>' . __( 'Your email address will not be published.' ) . ( $req ? $required_text : '' ) . '</i></blockquote>';
-    }
-
-    /**
-     * remove default text after the comment form
-     *
-     * @since 1.0.0
-     */
-    public function render_hide_notes_after_callback() {
-        echo '<input name="commentform_settings[hide_notes_after]" id="commentform_settings_hide_notes_after" type="checkbox" value="1" class="code" ' . checked(1, $this->options('hide_notes_after'), false) . ' />';
-        echo '<p class="description">'.__('Removes the default text after the comment form. This is currently:', 'commentform').'</p>';
-
-        echo '<blockquote><i>' . sprintf( __( 'You may use these <abbr title="HyperText Markup Language">HTML</abbr> tags and attributes: %s' ), ' <code>' . allowed_tags() . '</code>' ) . '</i></blockquote>';
     }
 
     /**
@@ -136,6 +109,16 @@ class Comment_Form_Admin extends Comment_Form_Main {
     public function render_comment_notes_before_callback() {
         echo '<textarea name="commentform_settings[text_before]" id="commentform_settings_text_before">' . $this->options('text_before') . '</textarea>';
         echo '<p class="description">'.__('This text is inserted between the headline and the first output if commenting is allowed to the user.', 'commentform').'</p>';
+        echo '<br/>';
+        echo '<input name="commentform_settings[hide_notes_before]" id="commentform_settings_hide_notes_before" type="checkbox" value="1" class="code" ' . checked(1, $this->options('hide_notes_before'), false) . ' />';
+        echo '<label for="commentform_settings_hide_notes_before">'. __('remove default text before the form', 'commentform') .'</label>';
+        echo '<p class="description">'.__('This is currently:', 'commentform').'</p>';
+
+        $req = get_option( 'require_name_email' );
+        $required_text = sprintf( ' ' . __('Required fields are marked %s'), '<span class="required">*</span>' );
+
+        echo '<blockquote><i>' . __( 'Your email address will not be published.' ) . ( $req ? $required_text : '' ) . '</i></blockquote>';
+
     }
 
     /**
@@ -144,6 +127,12 @@ class Comment_Form_Admin extends Comment_Form_Main {
      * @since 1.0.0
      */
     public function render_comment_notes_after_callback() {
+        echo '<input name="commentform_settings[hide_notes_after]" id="commentform_settings_hide_notes_after" type="checkbox" value="1" class="code" ' . checked(1, $this->options('hide_notes_after'), false) . ' />';
+        echo '<label for="commentform_settings_hide_notes_after">'. __('remove default text after the form', 'commentform') .'</label>';
+        echo '<p class="description">'.__('This is currently:', 'commentform').'</p>';
+
+        echo '<blockquote><i>' . sprintf( __( 'You may use these <abbr title="HyperText Markup Language">HTML</abbr> tags and attributes: %s' ), ' <code>' . allowed_tags() . '</code>' ) . '</i></blockquote>';
+        echo '<br/>';
         echo '<textarea name="commentform_settings[text_after]" id="commentform_settings_text_after">' . $this->options('text_after') . '</textarea>';
         echo '<p class="description">'.__('This text is inserted after the form when commenting if commiting is allowed to the user.', 'commentform').'</p>';
     }
@@ -155,6 +144,7 @@ class Comment_Form_Admin extends Comment_Form_Main {
      */
     public function render_two_columns_callback() {
         echo '<input name="commentform_settings[two_columns]" id="commentform_settings_two_columns" type="checkbox" value="1" class="code" ' . checked(1, $this->options('two_columns'), false) . ' />';
+        echo '<label for="commentform_settings_two_columns">'. __('two column layout', 'commentform') .'</label>';
         echo '<p class="description">'.__('Use a simple two column layout for your comment form.', 'commentform').'</p>';
     }
 
