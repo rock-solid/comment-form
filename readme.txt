@@ -59,6 +59,7 @@ I am open to your suggestions for more features here or in the [github repositor
 = 1.2.0 =
 
 * added two columns layout
+* restructured admin area
 
 = 1.1.0 =
 
