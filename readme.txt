@@ -26,7 +26,7 @@ Features:
 * `[comment-form]` shortcode to insert comment form into posts and pages
 * use a two columns layout for the comment form
 
-I am open to your suggestions for more features here or the [github repository](https://github.com/webgilde/comment-form)
+I am open to your suggestions for more features here or in the [github repository](https://github.com/webgilde/comment-form)
 
 == Installation ==
 
