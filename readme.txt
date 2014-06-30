@@ -38,6 +38,7 @@ I am open to your suggestions for more features here or in the [github repositor
 == Screenshots ==
 
 1. Comment form before and after applying some of the plugin options
+2. Two-column comment form layout
 
 == Important Notes ==
 
