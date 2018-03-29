@@ -190,8 +190,10 @@ class Comment_Form_Frontend extends Comment_Form_Main {
         $atts = shortcode_atts(array(
             'post_id' => null,
                 ), $atts);
-
-        if(isset($atts['post_id'])) unset($atts['post_id']);
+        
+        if( !isset( $post_id ) ) {
+                $post_id = null;
+        }
 
         ob_start();
         comment_form($atts, $post_id);
