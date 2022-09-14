@@ -56,6 +56,10 @@ I am open to your suggestions for more features here or in the [github repositor
 
 == Changelog ==
 
+= untagged =
+
+* sanitize the input into text options using `wp_kses_post` to prevent the usage of scripts and disallowed tags and attributes.
+
 = 1.2.0 =
 
 * added two columns layout

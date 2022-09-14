@@ -58,7 +58,7 @@ class Comment_Form_Admin extends Comment_Form_Main {
         add_settings_field('commentform_settings_two_columns', __('two column layout', 'commentform'), array($this, 'render_two_columns_callback'), 'comment-form-customizer', 'comment_form_layout_section');
 
         // register setting for $_POST handling
-        register_setting('comment_form_url_section', 'commentform_settings');
+        register_setting('comment_form_url_section', 'commentform_settings', array( 'sanitize_callback' => array( $this, 'sanitize_settings' ) ) );
     }
 
     /**
@@ -166,5 +166,16 @@ class Comment_Form_Admin extends Comment_Form_Main {
         echo '<label for="commentform_settings_two_columns">'. __('two column layout', 'commentform') .'</label>';
         echo '<p class="description">'.__('Use a simple two column layout for your comment form.', 'commentform').'</p>';
     }
+
+    /**
+	 * sanitize and save the option
+	 */
+    public function sanitize_settings ( $data ){
+
+    	$data['text_before'] = wp_kses_post( $data['text_before'] );
+    	$data['text_after']  = wp_kses_post( $data['text_after'] );
+
+    	return $data;
+	}
 
 }
