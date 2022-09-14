@@ -3,8 +3,9 @@ Contributors: webzunft
 Donate link: http://webgilde.com/
 Tags: comment form, comments, form, comment form
 Requires at least: 5.0
-Tested up to: 5.6
-Stable tag: 1.2.0
+Tested up to: 6.0
+Stable tag: 1.2.1
+Requires PHP: 5.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -56,7 +57,7 @@ I am open to your suggestions for more features here or in the [github repositor
 
 == Changelog ==
 
-= untagged =
+= 1.2.1 =
 
 * sanitize the input into text options using `wp_kses_post` to prevent the usage of scripts and disallowed tags and attributes.
 

@@ -3,7 +3,7 @@
 /**
  * Plugin Name: Advanced Comment Form
  * Description: Easily customize and optimize the standard comment form.
- * Version: 1.2.0
+ * Version: 1.2.1
  * Plugin URI: http://webgilde.com/
  * Author: Thomas Maier
  * Author URI: http://www.webgilde.com/
@@ -31,7 +31,7 @@ if (!function_exists('add_action')) {
     exit();
 }
 
-define('CFVERSION', '1.2.0');
+define('CFVERSION', '1.2.1');
 define('CFDIR', basename(dirname(__FILE__)));
 define('CFPATH', plugin_dir_path(__FILE__));
 
