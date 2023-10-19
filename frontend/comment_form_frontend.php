@@ -168,8 +168,10 @@ class Comment_Form_Frontend extends Comment_Form_Main {
         // apply styles for two columns comment form layout
         if ($options['two_columns'] && !is_user_logged_in()) {
             echo '<style>
-                .comment-form-left { float: left; min-width: 200px; margin-right: 10%; width: 45%; }
-                .comment-form-right { display: inline-block; min-width: 200px; width: 45%; }
+				@media only screen and (min-width: 480px) {
+	                .comment-form-left { float: left; min-width: 200px; margin-right: 10%; width: 45%; }
+	                .comment-form-right { display: inline-block; min-width: 200px; width: 45%; }
+				}
                 </style>';
         }
     }

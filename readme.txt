@@ -57,6 +57,10 @@ I am open to your suggestions for more features here or in the [github repositor
 
 == Changelog ==
 
+= untagged =
+
+- Ignore two-column style on screens below 480px
+
 = 1.2.1 =
 
 * sanitize the input into text options using `wp_kses_post` to prevent the usage of scripts and disallowed tags and attributes.
