@@ -1,11 +1,11 @@
 === Advanced Comment Form ===
 Contributors: webzunft
-Donate link: http://webgilde.com/
+Donate link: https://webgilde.com
 Tags: comment form, comments, form, comment form
 Requires at least: 5.0
-Tested up to: 6.0
+Tested up to: 6.3
 Stable tag: 1.2.1
-Requires PHP: 5.6
+Requires PHP: 7.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -57,7 +57,7 @@ I am open to your suggestions for more features here or in the [github repositor
 
 == Changelog ==
 
-= untagged =
+= 1.2.2 =
 
 - Ignore two-column style on screens below 480px
 
