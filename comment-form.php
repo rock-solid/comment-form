@@ -3,9 +3,9 @@
  * Plugin Name: Advanced Comment Form
  * Description: Easily customize and optimize the standard comment form.
  * Version: 1.2.2
- * Plugin URI: http://webgilde.com/
+ * Plugin URI: https://webgilde.com/
  * Author: Thomas Maier
- * Author URI: http://www.webgilde.com/
+ * Author URI: https://www.webgilde.com/
  * License: GPL v2 or later
  *
 
