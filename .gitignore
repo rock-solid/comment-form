@@ -11,4 +11,13 @@ wp-content/cache/
 wp-content/backups/
 sitemap.xml.gz
 wp-config.php
-.DS_Store
+
+# OS generated files #
+######################
+**/.DS_Store
+
+# npm
+package-lock.json
+npm-debug.log*
+/node_modules
+/dist
