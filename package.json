@@ -1,0 +1,27 @@
+{
+  "name": "comment-form",
+  "version": "1.0.0",
+  "description": "Comment Form",
+  "main": "index.js",
+  "scripts": {
+    "-------- INSTALL --------": "",
+    "install:admin": "cd admin && yarn",
+    "install:js": "yarn install:admin",
+    "postinstall": "yarn install:js",
+    "-------- BUILD --------": "",
+    "build:admin": "cd admin && yarn build",
+    "build": "yarn build:admin"
+  },
+  "author": "Rock Solid Digital",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git://..."
+  },
+  "dependencies": {
+    "yarn": "^1.17.3"
+  },
+  "devDependencies": {
+    "eslint": "^6.8.0"
+  }
+}
