@@ -5,8 +5,24 @@ class Comment_Form_Admin extends Comment_Form_Main {
     public function __construct() {
         parent::__construct();
 
+        add_action('admin_enqueue_scripts', array($this, 'enqueue_admin_assets'));
         add_action('admin_menu', array($this, 'add_menu_item'));
         add_action('admin_init', array($this, 'register_settings'));
+    }
+
+    /**
+     * Enqueue admin assets
+     *
+     * @since 1.0.0
+     *
+     * @param void
+     * @return void
+     */
+    public function enqueue_admin_assets() {
+        $plugin_slug = SNAZZY_COMMENTS_PLUGIN_SLUG;
+
+        wp_enqueue_style( "{$plugin_slug}-admin-styles", plugin_dir_url( SNAZZY_COMMENTS__FILE__ ) . 'admin/dist/main.css', array(), SNAZZY_COMMENTS_PLUGIN_VERSION );
+        wp_enqueue_script( "{$plugin_slug}-admin-scripts", plugin_dir_url( SNAZZY_COMMENTS__FILE__ ) . 'admin/dist/main.js', array( 'jquery', 'underscore' ), SNAZZY_COMMENTS_PLUGIN_VERSION, true );
     }
 
     /**
@@ -37,18 +53,41 @@ class Comment_Form_Admin extends Comment_Form_Main {
 
                 <h1><?php esc_attr_e('Snazzy Comments', 'snazzy-comments'); ?></h1>
             
-                <form method="post" action="options.php">
-                    <?php
-                        // This prints out all hidden setting fields
-                        // settings_fields( 'comment_form_fields_group' );
-                        
-                        settings_fields( 'comment_form_url_section' );
-                        do_settings_sections( 'comment-form-fields' );
-                        do_settings_sections( 'comment-form-text' );
-                        do_settings_sections( 'comment-form-layout' );
-                        submit_button();
-                    ?>
-                </form>
+                <div class="snazzy-comments-container flex">
+                    <div class="form-container">
+                        <div class="nav-tab-wrapper">
+                            <a href="?page=comment-form-customizer&tab=fields" class="nav-tab <?php echo esc_attr($active_tab) == 'fields' ? 'nav-tab-active' : ''; ?>">
+                                <?php esc_attr_e('Fields', 'snazzy-comments'); ?>
+                            </a>
+                            <a href="?page=comment-form-customizer&tab=text" class="nav-tab <?php echo esc_attr($active_tab) == 'text' ? 'nav-tab-active' : ''; ?>">
+                                <?php esc_attr_e('Text', 'snazzy-comments'); ?>
+                            </a>
+                            <a href="?page=comment-form-customizer&tab=layout" class="nav-tab <?php echo esc_attr($active_tab) == 'layout' ? 'nav-tab-active' : ''; ?>">
+                                <?php esc_attr_e('Layout', 'snazzy-comments'); ?>
+                            </a>
+                            <a href="?page=comment-form-customizer&tab=recaptcha" class="nav-tab <?php echo esc_attr($active_tab) == 'recaptcha' ? 'nav-tab-active' : ''; ?>">
+                                <?php esc_attr_e('Recaptcha', 'snazzy-comments'); ?>
+                                <span class="pro-pill">PRO</span>
+                            </a>
+                            <a href="?page=comment-form-customizer&tab=email" class="nav-tab <?php echo esc_attr($active_tab) == 'email' ? 'nav-tab-active' : ''; ?>">
+                                <?php esc_attr_e('Email Integration', 'snazzy-comments'); ?>
+                                <span class="pro-pill">PRO</span>
+                            </a>
+                        </div>
+
+                        <form method="post" action="options.php">
+                            <?php settings_fields( 'comment_form_url_section' ); ?>
+                            <?php if ($active_tab === 'fields') : ?>
+                                <div class="box-container"><?php do_settings_sections( 'comment-form-fields' ); ?></div>
+                            <?php elseif ($active_tab === 'text' ) : ?>
+                                <div class="box-container"><?php do_settings_sections( 'comment-form-text' ); ?></div>
+                            <?php elseif ($active_tab === 'layout' ) : ?>
+                                <div class="box-container"><?php do_settings_sections( 'comment-form-layout' ); ?></div>
+                            <?php endif; ?>
+                            <?php submit_button(); ?>
+                        </form>
+                    </div>
+                </div>
             </div>
         </div>
         <?php

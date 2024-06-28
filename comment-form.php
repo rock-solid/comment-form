@@ -28,6 +28,7 @@ defined( 'ABSPATH' ) or exit;
 if ( function_exists( '' ) ) {
     sc_fs()->set_basename( true, __FILE__ );
 } else {
+    defined( 'SNAZZY_COMMENTS__FILE__' ) or define( 'SNAZZY_COMMENTS__FILE__', __FILE__ );
 
     require_once( 'inc/config.php' );
 
