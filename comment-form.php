@@ -28,6 +28,9 @@ defined( 'ABSPATH' ) or exit;
 if ( function_exists( '' ) ) {
     sc_fs()->set_basename( true, __FILE__ );
 } else {
+
+    require_once( 'inc/config.php' );
+
     if ( ! function_exists( 'sc_fs' ) ) {
         /**
          * sc_fs
