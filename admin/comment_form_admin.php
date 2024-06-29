@@ -23,6 +23,14 @@ class Comment_Form_Admin extends Comment_Form_Main {
 
         wp_enqueue_style( "{$plugin_slug}-admin-styles", plugin_dir_url( SNAZZY_COMMENTS__FILE__ ) . 'admin/dist/main.css', array(), SNAZZY_COMMENTS_PLUGIN_VERSION );
         wp_enqueue_script( "{$plugin_slug}-admin-scripts", plugin_dir_url( SNAZZY_COMMENTS__FILE__ ) . 'admin/dist/main.js', array( 'jquery', 'underscore' ), SNAZZY_COMMENTS_PLUGIN_VERSION, true );
+    
+        wp_localize_script(
+            "{$plugin_slug}-admin-scripts",
+            'SNAZZYWP',
+            [
+                'pluginSlug' => $plugin_slug,
+            ]
+        );
     }
 
     /**
@@ -46,6 +54,7 @@ class Comment_Form_Admin extends Comment_Form_Main {
      * @since 1.0.0
      */
     public function render_settings_page() {
+        $images_url = plugin_dir_url( SNAZZY_COMMENTS__FILE__ ) . 'admin/assets/images/';
         $active_tab = isset($_GET['tab']) ? sanitize_key($_GET['tab']) : 'fields';
         ?>
         <div id="<?php echo esc_attr( SNAZZY_COMMENTS_PLUGIN_SLUG . '-admin' ) ?>">
@@ -67,25 +76,87 @@ class Comment_Form_Admin extends Comment_Form_Main {
                             </a>
                             <a href="?page=comment-form-customizer&tab=recaptcha" class="nav-tab <?php echo esc_attr($active_tab) == 'recaptcha' ? 'nav-tab-active' : ''; ?>">
                                 <?php esc_attr_e('Recaptcha', 'snazzy-comments'); ?>
+                                <?php if (!sc_fs()->is__premium_only()) : ?>
                                 <span class="pro-pill">PRO</span>
+                                <?php endif; ?>
                             </a>
                             <a href="?page=comment-form-customizer&tab=email" class="nav-tab <?php echo esc_attr($active_tab) == 'email' ? 'nav-tab-active' : ''; ?>">
                                 <?php esc_attr_e('Email Integration', 'snazzy-comments'); ?>
+                                <?php if (!sc_fs()->is__premium_only()) : ?>
                                 <span class="pro-pill">PRO</span>
+                                <?php endif; ?>
                             </a>
                         </div>
 
                         <form method="post" action="options.php">
                             <?php settings_fields( 'comment_form_url_section' ); ?>
-                            <?php if ($active_tab === 'fields') : ?>
-                                <div class="box-container"><?php do_settings_sections( 'comment-form-fields' ); ?></div>
-                            <?php elseif ($active_tab === 'text' ) : ?>
-                                <div class="box-container"><?php do_settings_sections( 'comment-form-text' ); ?></div>
-                            <?php elseif ($active_tab === 'layout' ) : ?>
-                                <div class="box-container"><?php do_settings_sections( 'comment-form-layout' ); ?></div>
-                            <?php endif; ?>
-                            <?php submit_button(); ?>
+                            <div class="box-container" style="<?php echo ($active_tab === 'fields' ) ? '' : 'display: none' ?>">
+                                <?php do_settings_sections( 'comment-form-fields' ); ?>
+                            </div>
+                            <div class="box-container" style="<?php echo ($active_tab === 'text' ) ? '' : 'display: none' ?>">
+                                <?php do_settings_sections( 'comment-form-text' ); ?>
+                            </div>
+                            <div class="box-container" style="<?php echo ($active_tab === 'layout' ) ? '' : 'display: none' ?>">
+                                <?php do_settings_sections( 'comment-form-layout' ); ?>
+                            </div>
+                            <div class="box-container" style="<?php echo ($active_tab === 'recaptcha' ) ? '' : 'display: none' ?>">
+                                <?php do_settings_sections( 'comment-form-recaptcha' ); ?>
+                            </div>
+                            <div class="box-container" style="<?php echo ($active_tab === 'email' ) ? '' : 'display: none' ?>">
+                                <?php do_settings_sections( 'comment-form-email' ); ?>
+                            </div>
+                            <?php submit_button(__('Save', 'snazzy-comments'), 'btn-submit'); ?>
                         </form>
+                    </div>
+
+                    <div class="right-panel">
+                        <?php if (!sc_fs()->is__premium_only()) : ?>
+                        <div class="bg-white-100 p-4">
+                            <div class="flex items-center justify-between">
+                                <div>
+                                    <h3 class="mb-4">Unlock all settings</h3>
+                                    <p class="text-base">Use code <span class="promo">snaz</span> to <br><b>get 10%</b> on all plans!</p>
+                                </div>
+
+                                <div class="flex-shrink-0">
+                                    <img src="<?php echo esc_url( $images_url . 'campaign.svg' ) ?>" alt="">
+                                </div>
+                            </div>
+
+                            <a href="" class="btn-round mt-4">
+                                <img class="mr-4" src="<?php echo esc_url( $images_url . 'ticket.svg' ) ?>" alt="">
+                                Buy now
+                            </a>
+                        </div>
+                        <?php endif; ?>
+
+                        <div class="mt-4">
+                            <div class="text-green-100 font-bold mb-6">Explore more from Disable Bloat</div>
+                            
+                            <a href="" class="flex items-center">
+                                <img class="panel-image" src="<?php echo esc_url( $images_url . 'rightpanel1.svg' ) ?>" alt="">
+                                
+                                <span class="text-green-100">View plugin docs & FAQs</span>
+                            </a>
+
+                            <a href="mailto:info@rocksoliddigital.com" class="flex items-center mt-4">
+                                <img class="panel-image" src="<?php echo esc_url( $images_url . 'rightpanel2.svg' ) ?>" alt="">
+                                
+                                <span class="text-green-100">Suggest a feature </span>
+                            </a>
+
+                            <a href="" class="flex items-center mt-4">
+                                <img class="panel-image" src="<?php echo esc_url( $images_url . 'rightpanel3.svg' ) ?>" alt="">
+                                
+                                <span class="text-green-100">Like this plugin? Please give us a 5 star review!</span>
+                            </a>
+
+                            <a href="" class="flex items-center mt-4">
+                                <img class="panel-image" src="<?php echo esc_url( $images_url . 'rightpanel4.svg' ) ?>" alt="">
+                                
+                                <span class="text-green-100">Check out other Rock Solid Plugins</span>
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -125,3 +196,5 @@ class Comment_Form_Admin extends Comment_Form_Main {
 require_once( 'views/fields.php' );
 require_once( 'views/text.php' );
 require_once( 'views/layout.php' );
+require_once( 'views/recaptcha.php' );
+require_once( 'views/email.php' );

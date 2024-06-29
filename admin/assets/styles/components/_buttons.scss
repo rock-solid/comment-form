@@ -1,0 +1,45 @@
+.btn-round {
+    @apply inline-flex items-center justify-center border-2 border-green-100 text-green-100 rounded-full text-lg px-6 transition-all cursor-pointer no-underline;
+
+    height: 60px;
+
+    &:hover {
+        @apply bg-green-100 text-white-100;
+
+        img {
+            filter: brightness(0) invert(1);
+        }
+    }
+}
+
+.btn-o-round {
+    @apply font-semibold px-12 inline-flex items-center justify-center border-2 border-green-100 bg-green-100 text-green-100 bg-opacity-0 rounded-full text-lg transition-all cursor-pointer no-underline;
+
+    height: 54px;
+
+    &.disabled {
+        @apply pointer-events-none opacity-10;
+    }
+
+    &:hover {
+        @apply bg-opacity-80;   
+    }
+}
+
+.btn-submit {
+    @apply font-semibold px-12 inline-flex items-center justify-center border-2 border-green-100 bg-green-100 text-white-100 bg-opacity-100 rounded-full text-lg transition-all cursor-pointer no-underline;
+
+    height: 54px;
+
+    &.disabled {
+        @apply pointer-events-none opacity-10;
+    }
+
+    &:hover {
+        @apply bg-opacity-80;   
+    }
+}
+
+.copy-button {
+    @apply cursor-pointer;
+}

@@ -56,7 +56,7 @@ if ( function_exists( '' ) ) {
                     'premium_slug'        => 'snazzy-comments-pro',
                     'type'                => 'plugin',
                     'public_key'          => 'pk_f1eed528d6dffd860e4ec47bf3b2a',
-                    'is_premium'          => false,
+                    'is_premium'          => true,
                     'premium_suffix'      => 'Pro',
                     // If your plugin is a serviceware, set this option to false.
                     'has_premium_version' => true,

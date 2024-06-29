@@ -45,6 +45,66 @@ class Comment_Form_Main {
     }
 
     /**
+     * pro badge wrap generator
+     * 
+     * @since 1.0.0
+     * 
+     */
+    public function generate_unlock_badge() {
+        $images_url = plugin_dir_url( SNAZZY_COMMENTS__FILE__ ) . 'admin/assets/images/'; ?>
+        <?php if (!sc_fs()->is__premium_only()) : ?>
+            <a href="" target="_blank" class="unlock-pill">
+                <img src="<?php echo esc_url( $images_url . 'lock.svg' ) ?>" alt="">
+                Unlock
+            </a>
+        <?php endif; ?>
+    <?php }
+
+    /**
+     * checkbox component element wrap generator
+     * 
+     * @since 1.0.0
+     * 
+     * 
+     */
+    public function generate_checkbox($name, $value, $checked_attr, $is_pro, $label) { ?>
+        <label class="checkbox-wrapper <?php echo $is_pro ? ( sc_fs()->is__premium_only() ? '' : 'disabled' ) : '' ?>">
+            <input type="checkbox"
+                name="<?php echo $name ?>"
+                value="<?php echo $value ?>"
+                <?php echo $checked_attr ?>
+                <?php echo $is_pro ? ( sc_fs()->is__premium_only() ? '' : 'disabled' ) : '' ?>>
+            <span class="thumb"></span>
+            <?php if ( !empty( $label ) ) : ?>
+                <span><?php _e($label, 'snazzy-comments') ?></span>
+            <?php endif; ?>
+            <?php echo $is_pro ? $this->generate_unlock_badge() : null; ?>
+        </label>
+    <?php }
+
+    /**
+     * toggle switch component element wrap generator
+     * 
+     * @since 1.0.0
+     * 
+     * 
+     */
+    public function generate_toggle($name, $value, $checked_attr, $is_pro, $label, ?string $showHideElementSelector) { ?>
+        <div class="toggle-switch">
+            <input type="checkbox"
+                name="<?php echo $name ?>"
+                value="<?php echo $value ?>"
+                <?php echo $checked_attr ?>
+                <?php echo $is_pro ? ( sc_fs()->is__premium_only() ? '' : 'disabled' ) : '' ?>
+                <?php echo $showHideElementSelector ? 'data-show-hide-elements="' . $showHideElementSelector . '"' : ''?>>
+            <?php if ( !empty( $label ) ) : ?>
+                <span><?php _e($label, 'snazzy-comments') ?></span>
+            <?php endif; ?>
+            <?php echo $is_pro ? $this->generate_unlock_badge() : null; ?>
+        </div>
+    <?php }
+
+    /**
      * prepare default options
      *
      * @since 1.0.0
