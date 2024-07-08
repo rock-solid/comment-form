@@ -28,6 +28,10 @@ defined( 'ABSPATH' ) or exit;
 if ( function_exists( '' ) ) {
     sc_fs()->set_basename( true, __FILE__ );
 } else {
+    defined( 'SNAZZY_COMMENTS__FILE__' ) or define( 'SNAZZY_COMMENTS__FILE__', __FILE__ );
+
+    require_once( 'inc/config.php' );
+
     if ( ! function_exists( 'sc_fs' ) ) {
         /**
          * sc_fs
@@ -52,7 +56,7 @@ if ( function_exists( '' ) ) {
                     'premium_slug'        => 'snazzy-comments-pro',
                     'type'                => 'plugin',
                     'public_key'          => 'pk_f1eed528d6dffd860e4ec47bf3b2a',
-                    'is_premium'          => false,
+                    'is_premium'          => true,
                     'premium_suffix'      => 'Pro',
                     // If your plugin is a serviceware, set this option to false.
                     'has_premium_version' => true,

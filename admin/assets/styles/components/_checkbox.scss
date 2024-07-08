@@ -1,0 +1,107 @@
+.checkbox-wrapper {
+    @apply relative inline-flex items-center pl-8 py-1;
+
+    .thumb {
+        @apply absolute top-1/2 left-0 rounded-sm border-2 bg-green-100 bg-opacity-0 border-green-100 transform -translate-y-1/2 transition-all;
+
+        width: 24px;
+        height: 24px;
+
+        &::before {
+            @apply absolute border-green-100 border-opacity-0 rotate-45 transition-all;
+
+            content: "";
+            left: 6px;
+            top: 1px;
+            width: 8px;
+            height: 14px;
+            border-width: 0 2px 2px 0;
+        }
+    }
+
+    input[type="checkbox"] {
+        @apply hidden;
+
+        &:checked + .thumb {
+            &::before {
+                @apply border-opacity-100;
+            }
+        }
+    }
+    
+    span:not(.pro-pill) {
+        @apply text-black-100;
+    }
+}
+
+.checkbox-wrapper.disabled {
+    @apply cursor-default;
+    
+    & > *:not(.pro-pill) {
+        @apply pointer-events-none opacity-60;
+    }
+}
+
+.checkbox-wrapper:hover {
+    .thumb {
+        @apply bg-opacity-20;
+    }
+}
+  
+.toggle-switch {
+    @apply py-1;
+
+    &.disabled {
+        @apply opacity-60 pointer-events-none;
+    }
+
+    input[type="checkbox"] {
+        @apply cursor-pointer border-none relative shadow-none bg-transparent;
+
+        width: 45px;
+        height: 26px;
+
+        &::before {
+            @apply block absolute border border-green-100 bg-green-100 bg-opacity-0 duration-300;
+
+            content: '';
+            border-radius: 20px;
+            width: 45px;
+            height: 26px;
+            margin: 0;
+        }
+
+        &::after {
+            @apply block absolute bg-green-100 duration-300 rounded-full;
+
+            content: '';
+            width: 18px;
+            height: 18px;
+            top: 50%;
+            left: 5px;
+            transform: translateY(-50%);
+        }
+
+        &:checked {
+            &::before {
+                @apply bg-opacity-100;
+            }
+
+            &::after {
+                @apply bg-white-100;
+
+                left: 22px;
+            }
+        }
+
+        &:focus {
+            @apply shadow-none outline-none;
+        }
+    }
+}
+
+.toggle-switch:hover {
+    input[type="checkbox"]:not(:checked)::before {
+        @apply bg-opacity-10;
+    }
+}

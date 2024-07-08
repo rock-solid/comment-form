@@ -1,0 +1,50 @@
+// Style for settings API add_settings_field()
+.form-table {
+    input[type="text"] {
+        @apply border-green-100 rounded-sm;
+
+        min-width: 400px;
+    }
+
+    textarea {
+        @apply border border-green-100 rounded-none resize-none p-2;
+
+        min-width: 465px;
+    }
+
+    code {
+        @apply block italic p-2 m-0 bg-white-200 border border-grey-200 text-black-100;
+    }
+
+    p {
+        @apply my-2 text-black-100 text-opacity-60 text-sm;
+    }
+
+    a:not(.unlock-pill) {
+        @apply text-black-100 underline;
+    }
+
+    & > tbody > tr {
+        @apply flex flex-col mt-4;
+    }
+
+    & > tbody > tr > th[scope='row'] {
+        @apply w-auto p-0 text-green-100 leading-tight text-lg font-semibold;
+    }
+
+    & > tbody > tr > td {
+        @apply mt-4 mb-0 p-0;
+    }
+
+    .warning {
+        @apply mt-0 mb-4;
+    }
+
+    .input-wrapper {
+        @apply relative;
+
+        .input-append {
+            @apply inline-flex items-center absolute top-0 right-0 h-full bg-green-100 text-white-100 rounded-sm px-4;
+        }
+    }
+}

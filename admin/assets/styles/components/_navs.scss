@@ -1,0 +1,15 @@
+.nav-tab-wrapper {
+    @apply border-none px-2;
+}
+
+.nav-tab {
+    @apply text-base font-semibold bg-transparent text-green-100 border-0 border-b-3 border-solid border-green-100 border-opacity-0 m-0 px-3 pb-4 transition-all;
+
+    &.nav-tab-active {
+        @apply border-opacity-100;
+    }
+
+    &:not(.nav-tab-active):hover {
+        @apply border-opacity-20;
+    }
+}

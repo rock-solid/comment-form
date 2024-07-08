@@ -1,0 +1,16 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+@import "common/variables";
+@import "common/global";
+
+##{$plugin_slug}-admin {
+    @import "components/navs";
+    @import "components/forms";
+    @import "components/buttons";
+    @import "components/checkbox";
+    @import "components/radiobutton";
+    @import "components/pills";
+    @import "components/right-panel";
+}

@@ -1,0 +1,11 @@
+.right-panel {
+    @apply sticky top-8 flex-shrink-0 ml-4;
+
+    width: 345px;
+    
+    .panel-image {
+        @apply mr-4;
+
+        width: 38px;
+    }
+}

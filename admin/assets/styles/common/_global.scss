@@ -1,0 +1,70 @@
+// Smooth rendering for all browsers
+* {
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-tap-highlight-color: transparent;
+}
+
+// Fix for dashicon
+.dashicons-before {
+  @apply flex justify-center items-center;
+
+  &::before {
+    padding: 0 !important;
+  }
+
+  img {
+    @apply border-none w-auto mx-auto my-0;
+
+    padding: 0 !important;
+  }
+}
+
+##{$plugin_slug}-admin {
+  @apply text-sm;
+
+  h1,
+  h2,
+  h3,
+  h4,
+  .h1 {
+    @apply text-green-100 leading-tight;
+  }
+
+  h1 {
+    @apply text-xl font-medium;
+  }
+
+  h2 {
+    @apply text-3lg font-bold;
+  }
+
+  h3 {
+    @apply text-lg font-bold;
+  }
+
+  p {
+    @apply text-sm text-black-100;
+  }
+
+  a:hover {
+    @apply opacity-80;
+  }
+
+  hr {
+    @apply my-4;
+  }
+
+  .form-container {
+    @apply flex-grow;
+  }
+
+  .box-container {
+    @apply bg-white-100 p-6;
+  }
+
+  .promo {
+    @apply border border-dashed border-black-100 text-black-100 font-bold px-2 pb-1;
+  }
+}
