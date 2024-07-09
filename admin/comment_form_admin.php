@@ -41,7 +41,7 @@ class Comment_Form_Admin extends Comment_Form_Main {
     public function add_menu_item() {
         add_comments_page(
             __('Customize Comment Form', 'commentform'),
-            __('Comment Form', 'commentform'),
+            __('Snazzy Comments', 'commentform'),
             'manage_options',
             'comment-form-customizer',
             array($this, 'render_settings_page')
@@ -131,7 +131,7 @@ class Comment_Form_Admin extends Comment_Form_Main {
                         <?php endif; ?>
 
                         <div class="mt-4">
-                            <div class="text-green-100 font-bold mb-6">Explore more from Disable Bloat</div>
+                            <div class="text-green-100 font-bold mb-6">Explore more from Snazzy Comments</div>
                             
                             <a href="" class="flex items-center">
                                 <img class="panel-image" src="<?php echo esc_url( $images_url . 'rightpanel1.svg' ) ?>" alt="">
