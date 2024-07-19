@@ -25,6 +25,9 @@ class Comment_Form_Frontend extends Comment_Form_Main {
         add_action('wp_footer', array($this, 'footer_output'));
         // add comment form shortcode
         add_shortcode('comment-form', array($this, 'shortcode'));
+        // add the pro feature: recaptcha
+        add_action( 'wp_enqueue_scripts', array($this, 'enqueue_recaptcha_script'));
+        add_action( 'comment_form_after', array($this, 'add_recaptcha_to_comment_form'));
     }
 
     /**
@@ -203,4 +206,35 @@ class Comment_Form_Frontend extends Comment_Form_Main {
         return $output;
     }
 
+    /**
+     * show the recaptcha badge
+     *
+     * @since 1.0.0
+     */
+    public function enqueue_recaptcha_script() {
+        if (sc_fs()->is__premium_only()) {
+            if ( is_single() && comments_open() ) {
+                wp_enqueue_script( 'google-recaptcha', 'https://www.google.com/recaptcha/api.js', array(), null, true );
+            }
+        }
+    }
+
+    /**
+     * ensure that the reCAPTCHA badge and the required scripts
+     * are only loaded on pages where the comment form is displayed
+     *
+     * @since 1.0.0
+     */
+    public function add_recaptcha_to_comment_form() {
+        $options = $this->options();
+        echo print_r($options);
+
+        if ( is_single() && comments_open() ) : 
+            if ( isset($options['recaptcha_site_key']) && $options['recaptcha_site_key'] != '' ) : ?>
+                <div id="recaptcha-placeholder">
+                    <div class="g-recaptcha" data-sitekey="<?php echo esc_attr( $options['recaptcha_site_key'] ); ?>"></div>
+                </div>
+            <?php endif;
+        endif;
+    }
 }
