@@ -15,6 +15,8 @@ class Comment_Form_Frontend extends Comment_Form_Main {
         add_filter('comment_form_defaults', array($this, 'comment_form_defaults_filter'));
         // comment form do before printing the form
         add_action('comment_form_top', array($this, 'comment_form_top_action'));
+        // comment form do at the bottom of the comment form, inside the closing form tag
+        add_action('comment_form_after_fields', array($this, 'comment_form_cookies_action'));
         // comment form do after fields where rendered
         add_action('comment_form_after_fields', array($this, 'comment_form_after_fields_action'));
         // manipulate the comment form markup on its output
@@ -49,6 +51,11 @@ class Comment_Form_Frontend extends Comment_Form_Main {
             unset($fields['url']);
         }
 
+        // remove the consent field
+        if ($options['remove_cookies'] && isset($fields['cookies'])) {
+            unset($fields['cookies']);
+        }
+
         return $fields;
     }
 
@@ -70,6 +77,11 @@ class Comment_Form_Frontend extends Comment_Form_Main {
         // hide the default text after the form
         if ($options['hide_notes_after']) {
             $defaults['comment_notes_after'] = '';
+        }
+
+        // hide the default text after the form
+        if ($options['cookies_consent']) {
+            $defaults['cookies'] = '';
         }
         return $defaults;
     }
@@ -93,6 +105,27 @@ class Comment_Form_Frontend extends Comment_Form_Main {
             echo '<div class="comment-form-left">';
         }
     }
+
+    /**
+     * action to set comment cookies
+     *
+     * @since 1.0.0
+     */
+    public function comment_form_cookies_action() {
+        $options = $this->options();
+    
+        // Print custom consent text.
+        if (isset($options['cookies_text']) && $options['cookies_text'] !== '') {
+            echo "<script>
+                document.addEventListener('DOMContentLoaded', function() {
+                    var consentLabel = document.querySelector('.comment-form-cookies-consent label');
+                    if (consentLabel) {
+                        consentLabel.textContent = " . json_encode($options['cookies_text']) . ";
+                    }
+                });
+            </script>";
+        }
+    }    
 
     /**
      * action to trigger after the fields (username, email, url) where displayed
@@ -164,6 +197,11 @@ class Comment_Form_Frontend extends Comment_Form_Main {
         // .comment-form-email as in the default comment form in /wp-includes/comment-template.php
         if ($options['remove_email_css']) {
             echo "<style>.comment-form-email, #email {display:none;}</style>";
+        }
+        // css code to hide the consent field
+        // .comment-form-cookies-consent as in the default comment form in /wp-includes/comment-template.php
+        if ($options['remove_cookies_css']) {
+            echo "<style>.comment-form > p.comment-form-cookies-consent {display:none;}</style>";
         }
         // apply styles for two columns comment form layout
         if ($options['two_columns'] && !is_user_logged_in()) {

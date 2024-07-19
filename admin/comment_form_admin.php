@@ -184,8 +184,9 @@ class Comment_Form_Admin extends Comment_Form_Main {
 	 */
     public function sanitize_settings ( $data ){
 
-    	$data['text_before'] = wp_kses_post( $data['text_before'] );
-    	$data['text_after']  = wp_kses_post( $data['text_after'] );
+    	$data['text_before']  = wp_kses_post( $data['text_before'] );
+    	$data['text_after']   = wp_kses_post( $data['text_after'] );
+        $data['cookies_text'] = wp_kses_post( $data['cookies_text'] );
 
     	return $data;
 	}

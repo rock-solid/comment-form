@@ -30,6 +30,14 @@ class Comment_Form_Admin_Text extends Comment_Form_Main {
             'comment-form-text',
             'comment_form_texts_section'
         );
+
+        add_settings_field(
+            'commentform_settings_consent_text',
+            __('Texts for consent', 'commentform'),
+            array($this, 'render_comment_consent_text_callback'),
+            'comment-form-text',
+            'comment_form_texts_section'
+        );
     }
 
     /**
@@ -95,6 +103,28 @@ class Comment_Form_Admin_Text extends Comment_Form_Main {
 
         <textarea rows="5" name="commentform_settings[text_after]" class="mt-4"><?php $this->options('text_after') ?></textarea>
         <p><?php _e('This text is inserted after the form when commenting if commiting is allowed to the user.', 'commentform') ?></p>
+    <?php }
+
+    /**
+     * Change consent text
+     *
+     * @since 1.0.0
+     */
+    public function render_comment_consent_text_callback() { ?>
+        <?php 
+            $this->generate_checkbox(
+                'commentform_settings[cookies_consent]',
+                '1',
+                checked(1, $this->options('cookies_consent'), false),
+                false,
+                'Remove consent default text'
+            ); 
+        ?>
+        <p><?php _e('This is currently:', 'commentform') ?></p>
+        <p><?php _e( 'Save my name, email, and website in this browser for the next time I comment.' ) ?></p>
+        
+        <textarea rows="5" name="commentform_settings[cookies_text]"><?php $this->options('cookies_text') ?></textarea>
+        <p><?php _e('If the consent field is enabled, this text will appear beside it.', 'commentform') ?></p>
     <?php }
 }
 
