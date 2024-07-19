@@ -186,6 +186,8 @@ class Comment_Form_Admin extends Comment_Form_Main {
 
     	$data['text_before'] = wp_kses_post( $data['text_before'] );
     	$data['text_after']  = wp_kses_post( $data['text_after'] );
+        $data['recaptcha_site_key'] = wp_kses_post( $data['recaptcha_site_key'] );
+    	$data['recaptcha_secret_key']  = wp_kses_post( $data['recaptcha_secret_key'] );
 
     	return $data;
 	}

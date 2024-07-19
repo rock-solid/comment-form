@@ -61,7 +61,7 @@ class Comment_Form_Admin_Email extends Comment_Form_Main {
                     <img src="<?php echo esc_url( $images_url . 'key.svg' ) ?>" class="mr-2" alt=""> API key
                 </div>
                 <div class="input-wrapper">
-                    <input name="commentform_settings[recaptcha_site_key]" type="text"
+                    <input name="commentform_settings[mailchimp_api_key]" type="text"
                     <?php echo ( sc_fs()->is__premium_only() ? '' : 'disabled' ) ?>>
                     <div class="input-append copy-button">COPY</div>
                 </div>
