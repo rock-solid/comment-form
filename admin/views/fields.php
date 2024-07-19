@@ -30,6 +30,14 @@ class Comment_Form_Admin_Fields extends Comment_Form_Main {
             'comment-form-fields',
             'comment_form_fields_section'
         );
+
+        add_settings_field(
+            'commentform_settings_remove_cookies',
+            __('Remove consent field', 'commentform'),
+            array($this, 'render_remove_cookies_field_callback'),
+            'comment-form-fields',
+            'comment_form_fields_section'
+        );
     }
     
     /**
@@ -103,6 +111,34 @@ class Comment_Form_Admin_Fields extends Comment_Form_Main {
             );
         ?>
         <p><?php _e('Removes the "email" field with css. Use this only if the method above doesn’t work. This uses "display:none" on the most common css selectors for the email field. The value might still get submitted by bots and tech-savvy users.', 'commentform') ?></p>
+    <?php }
+
+    /**
+     * consent field settings
+     *
+     * @since 1.2.0
+     */
+    public function render_remove_cookies_field_callback() { ?>
+        <?php
+            $this->generate_checkbox(
+                'commentform_settings[remove_cookies]',
+                '1',
+                checked(1, $this->options('remove_cookies'), false),
+                false,
+                'Remove consent field'
+            );
+        ?>
+        <p><?php _e('Removes the "consent" field from the frontend programmatically.', 'commentform') ?></p>
+        <?php
+            $this->generate_checkbox(
+                'commentform_settings[remove_cookies_css]',
+                '1',
+                checked(1, $this->options('remove_cookies_css'), false),
+                false,
+                'Remove consent field with css'
+            );
+        ?>
+        <p><?php _e('Removes the "consent" field with css. Use this only if the method above doesn’t work. This uses "display:none" on the most common css selectors for the consent field. The value might still get submitted by bots and tech-savvy users.', 'commentform') ?></p>
     <?php }
 }
 

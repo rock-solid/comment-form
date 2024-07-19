@@ -117,12 +117,16 @@ class Comment_Form_Main {
         $defaults = array(
             'hide_notes_after' => 0,
             'hide_notes_before' => 0,
+            'cookies_consent' => 0,
             'remove_email' => false,
             'remove_email_css' => false,
             'hide_url' => 0,
             'hide_url_css' => false,
+            'remove_cookies' => false,
+            'remove_cookies_css' => false,
             'text_after' => '',
             'text_before' => '',
+            'cookies_text' => '',
             'two_columns' => false
         );
 
