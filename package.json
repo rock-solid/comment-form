@@ -10,7 +10,11 @@
     "postinstall": "yarn install:js",
     "-------- BUILD --------": "",
     "build:admin": "cd admin && yarn build",
-    "build": "yarn build:admin"
+    "build": "yarn build:admin",
+    "-------- LINT --------": "",
+    "lint:js": "eslint .",
+    "lint:php": "composer lint",
+    "lint": "yarn lint:js && yarn lint:php"
   },
   "author": "Rock Solid Digital",
   "license": "ISC",
@@ -19,9 +23,11 @@
     "url": "git://..."
   },
   "dependencies": {
-    "yarn": "^1.17.3"
+    "yarn": "^1.22.1"
   },
   "devDependencies": {
-    "eslint": "^6.8.0"
+    "@eslint/eslintrc": "^3.1.0",
+    "@eslint/js": "^9.12.0",
+    "eslint": "^9.12.0"
   }
 }

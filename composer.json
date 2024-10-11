@@ -1,0 +1,15 @@
+{
+    "name": "rocksolid/comment-form",
+    "description": "comment-form",
+    "type": "project",
+    "config": {
+      "sort-packages": true
+    },
+    "scripts": {
+      "lint": ["phpcs --runtime-set ignore_warnings_on_exit true"],
+      "lint-fix": ["phpcbf --runtime-set ignore_warnings_on_exit true"]
+    },
+    "require-dev": {
+        "squizlabs/php_codesniffer": "*"
+    }
+  }
