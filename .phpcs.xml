@@ -1,0 +1,90 @@
+<?xml version="1.0"?>
+<ruleset name="RSD">
+  <description>RSD PHP Coding Standards</description>
+
+  <!-- Scan these files -->
+  <file>admin/views</file>
+  <file>frontend</file>
+  <file>inc</file>=
+
+  <!-- Only lint .php files -->
+  <arg name="extensions" value="php" />
+
+  <!-- Show colors in console -->
+  <arg value="-colors" />
+
+  <!-- Ignore warnings, only show errors -->
+  <!-- <arg value="n" /> -->
+
+  <!-- Show sniff codes in all reports -->
+  <arg value="s" />
+
+  <arg name="report" value="full" />
+
+  <!-- Use PSR2 as a base -->
+  <rule ref="PSR2">
+    <!-- Allow underscores in class and method names (WP standard) -->
+    <exclude name="PSR1.Methods.CamelCapsMethodName.NotCamelCaps" />
+    <exclude name="Squiz.Classes.ValidClassName.NotCamelCaps" />
+
+    <!-- Allow opening curly brace on the same line with class or function definition -->
+    <exclude name="PSR2.Classes.ClassDeclaration.OpenBraceNewLine" />
+    <exclude name="Squiz.Functions.MultiLineFunctionDeclaration.BraceOnSameLine" />
+
+    <!-- Disabling namespacing -->
+    <exclude name="PSR1.Classes.ClassDeclaration.MissingNamespace" />
+  </rule>
+
+  <!-- Set indentation to 2 spaces -->
+  <rule ref="Generic.WhiteSpace.ScopeIndent">
+    <properties>
+      <property name="indent" value="2" />
+      <!-- <property name="exact" value="true" /> -->
+    </properties>
+  </rule>
+
+  <rule ref="Generic.WhiteSpace.ArbitraryParenthesesSpacing">
+    <properties>
+      <property name="spacing" value="1" />
+    </properties>
+  </rule>
+
+  <rule ref="Squiz.ControlStructures.ForEachLoopDeclaration">
+    <properties>
+      <property name="requiredSpacesAfterOpen" value="1" />
+      <property name="requiredSpacesBeforeClose" value="1" />
+    </properties>
+  </rule>
+
+  <rule ref="Squiz.Functions.FunctionDeclarationArgumentSpacing">
+    <properties>
+      <property name="equalsSpacing" value="1" />
+      <property name="requiredSpacesAfterOpen" value="1" />
+      <property name="requiredSpacesBeforeClose" value="1" />
+    </properties>
+  </rule>
+
+  <rule ref="PSR2.ControlStructures.SwitchDeclaration">
+    <properties>
+      <property name="indent" value="2" />
+    </properties>
+  </rule>
+
+  <rule ref="PSR2.Methods.FunctionCallSignature">
+    <properties>
+      <property name="indent" value="2" />
+      <property name="requiredSpacesAfterOpen" value="1" />
+      <property name="requiredSpacesBeforeClose" value="1" />
+    </properties>
+  </rule>
+
+  <rule ref="PSR2.ControlStructures.ControlStructureSpacing">
+    <properties>
+      <property name="requiredSpacesAfterOpen" value="1" />
+      <property name="requiredSpacesBeforeClose" value="1" />
+    </properties>
+  </rule>
+
+  <!-- Exclusions below are for resources/views/ folder -->
+
+</ruleset>

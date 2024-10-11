@@ -1,11 +1,13 @@
 const toggleVisibility = (snazzyAdmin) => {
-    jQuery(document).ready(function ($) {
-      const toggleSwitchWrapper = snazzyAdmin.find('.toggle-switch');
+  jQuery(document).ready(function ($) {
+    const toggleSwitchWrapper = snazzyAdmin.find('.toggle-switch');
 
-      toggleSwitchWrapper.each(function() {
-        const thisSwitchWrapper = $(this);
+    toggleSwitchWrapper.each(function () {
+      const thisSwitchWrapper = $(this);
 
-        thisSwitchWrapper.find('input[type="checkbox"]').on('change', function() {
+      thisSwitchWrapper
+        .find('input[type="checkbox"]')
+        .on('change', function () {
           const _this = $(this);
 
           const showHideElements = _this.data('show-hide-elements');
@@ -20,8 +22,8 @@ const toggleVisibility = (snazzyAdmin) => {
             }
           }
         });
-      });
     });
+  });
 };
 
 export default toggleVisibility;
